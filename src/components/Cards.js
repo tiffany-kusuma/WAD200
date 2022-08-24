@@ -24,17 +24,19 @@ const Cards = () => {
 
   }, [])
 
-  const like = async (id, likeBefore) => {
+  const like = async (id, likeBefore, liked) => {
     try {
       const tweetDoc = doc(db, 'tweet', id)
-      if(likeBefore > 0) {
+      if(liked === true) {
         await updateDoc(tweetDoc, {
-          like: parseInt(likeBefore)-1,
+          like : parseInt(likeBefore)-1,
+          liked : false
         })
 
       } else {
         await updateDoc(tweetDoc, {
           like: parseInt(likeBefore)+1,
+          liked : true
         })
 
       }
@@ -43,16 +45,18 @@ const Cards = () => {
     }
   }
 
-  const comment = async (id, commentBefore) => {
+  const comment = async (id, commentBefore, comented) => {
     try {
       const tweetDoc = doc(db, 'tweet', id)
-      if(commentBefore > 0) {
+      if(comented === true) {
         await updateDoc(tweetDoc, {
           comment: parseInt(commentBefore)-1,
+          commented : false
         })
       } else {
         await updateDoc(tweetDoc, {
           comment: parseInt(commentBefore)+1,
+          commented : true
         })
       }
     } catch (error) {
@@ -69,17 +73,19 @@ const Cards = () => {
     }
   }
 
-  const retweet = async (id, retwetBefore) => {
+  const retweet = async (id, retwetBefore, retwweted) => {
     try {
       const tweetDoc = doc(db, 'tweet', id)
-      if(retwetBefore > 0) {
+      if(retwweted === true) {
         await updateDoc(tweetDoc, {
           retweet: parseInt(retwetBefore)-1,
+          retwweted : false
         })
 
       } else {
         await updateDoc(tweetDoc, {
           retweet: parseInt(retwetBefore)+1,
+          retwweted : true
         })
 
       }
@@ -98,6 +104,7 @@ const Cards = () => {
             <Card
               id={tweet.id}
               key={i}
+              image={tweet.data.images !== false ? tweet.data.images : null}
               user={tweet.data.name}
               info={tweet.data.userName}
               tags={tweet.data.tweet}
@@ -109,6 +116,10 @@ const Cards = () => {
               commentAction={comment}
               deleteAction={deleteAction}
               retweetAction={retweet}
+              deleteBtn={tweet.data.delete}
+              commented={tweet.data.commented}
+              liked={tweet.data.liked}
+              retweeted={tweet.data.retweeted}
             />
           )
         })

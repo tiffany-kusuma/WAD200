@@ -5,9 +5,10 @@ import { ReactComponent as CommentSVG } from "../images/comment.svg";
 import { ReactComponent as RetweetSVG } from "../images/retweet.svg";
 import { ReactComponent as HeartSVG } from "../images/heart.svg";
 import { ReactComponent as ShareSVG } from "../images/share.svg";
+import HeartRed from "../images/likefill.svg";
 import { useState } from "react";
 
-function Card({ id, image=null, user, info, tags, time, comment, like, retweet, hash, likeAction, commentAction, deleteAction, retweetAction }) {
+function Card({ id, image=null, user, info, tags, time, comment, like, retweet, hash, likeAction, commentAction, deleteAction, retweetAction, deleteBtn=false, commented, liked, retweeted }) {
   const [showDelete, setShowDelete] = useState(false)
 
   return (
@@ -22,17 +23,22 @@ function Card({ id, image=null, user, info, tags, time, comment, like, retweet, 
               <span className="span">·</span>
               <h2>{time}</h2>
             </div>
-            <div className="more-btn">
-              <MoreSVG onClick={() => setShowDelete(showDelete ? false : true)}/>
-              {
-                showDelete === true &&
-                <div className="btn-delte-container">
-                  <button className="btn-delete" onClick={() => deleteAction(id)}>
-                    Delete Tweet
-                  </button>
-                </div>
-              }
-            </div>
+            
+            {
+              deleteBtn === true &&
+              <div className="more-btn">
+                <MoreSVG onClick={() => setShowDelete(showDelete ? false : true)}/>
+                {
+                  showDelete === true &&
+                  <div className="btn-delte-container">
+                    <button className="btn-delete" onClick={() => deleteAction(id)}>
+                      Delete Tweet
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+
           </div>
           <div class="caption">
             <p>{tags}</p>
@@ -45,16 +51,21 @@ function Card({ id, image=null, user, info, tags, time, comment, like, retweet, 
           }
 
           <div className="cardbutton">
-            <div className="buttons" onClick={() => commentAction(id, comment)}>
+            <div className="buttons" onClick={() => commentAction(id, comment, commented)}>
               <CommentSVG />
               <h2>{comment}</h2>
             </div>
-            <div className="buttons" onClick={() => retweetAction(id, retweet)}>
+            <div className="buttons" onClick={() => retweetAction(id, retweet, retweeted)}>
               <RetweetSVG />
               <h2>{retweet}</h2>
             </div>
-            <div className="buttons" onClick={() => likeAction(id, like)}>
-              <HeartSVG />
+            <div className="buttons" onClick={() => likeAction(id, like, liked)}>
+              {
+                liked === true ?
+                <img src={HeartRed} alt="heart red" width={18}/>
+                :
+                <HeartSVG />
+              }
               <h2>{like}</h2>
             </div>
             <div className="buttons">

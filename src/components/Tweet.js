@@ -10,7 +10,6 @@ import { ReactComponent as StickerSVG } from "../images/sticker.svg";
 import { db } from "../config"
 import { collection, addDoc, Timestamp } from "firebase/firestore"
 import { useState } from "react";
-import moment from "moment-timezone";
 
 function CardHeader() {
   var avatarURL = "https://i.pravatar.cc/" + Math.round(Math.random() * 500);
@@ -23,9 +22,14 @@ function CardHeader() {
           like : 0,
           comment : 0,
           retweet : 0,
-          userName : "betty_123",
+          userName : "betty_867",
           name : "Betty",
+          images : false,
           tweet : valueTweet,
+          delete : true,
+          liked : false,
+          commented : false,
+          retweeted : false,
           createdAt : Timestamp.now()
         })
 
