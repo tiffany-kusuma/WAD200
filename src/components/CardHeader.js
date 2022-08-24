@@ -1,4 +1,4 @@
-import "/src/styles/cardheader.css";
+import "../styles/cardheader.css";
 
 function CardHeader() {
   var avatarURL = "https://i.pravatar.cc/" + Math.round(Math.random() * 500);

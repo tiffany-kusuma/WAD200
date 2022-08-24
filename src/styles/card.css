@@ -105,3 +105,26 @@ li {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
+
+.more-btn {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  flex-direction: column;
+  position: relative;
+}
+
+.btn-delte-container {
+  top: 25px;
+  position: absolute;
+}
+
+.btn-delete {
+  background-color: rgb(29, 155, 240);
+  border: 0;
+  padding: 8px 15px 8px 15px;
+  border-radius: 10px;
+  color: white;
+  width: 110px;
+}

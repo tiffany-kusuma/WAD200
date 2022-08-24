@@ -1,4 +1,4 @@
-import "/src/styles/trend.css";
+import "../styles/trend.css";
 
 function TrendFunction() {
   return (

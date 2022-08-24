@@ -42,6 +42,7 @@ input.inputsearch {
   font-family: "Amiro", sans-serif;
   color: grey;
   font-size: 20px;
+}
 
 textarea:focus,
 input:focus {

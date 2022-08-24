@@ -1,5 +1,5 @@
-import "/src/styles/search.css";
-import { ReactComponent as SearchSVG } from "/src/images/search.svg";
+import "../styles/search.css";
+import { ReactComponent as SearchSVG } from "../images/search.svg";
 
 function Search() {
   return (

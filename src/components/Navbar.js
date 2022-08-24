@@ -1,13 +1,13 @@
 import "../styles/navbar.css";
 import logo from "../images/logo.png";
 
-import { ReactComponent as HomeSVG } from "/src/images/home.svg";
-import { ReactComponent as SearchSVG } from "/src/images/search.svg";
-import { ReactComponent as NotifSVG } from "/src/images/notif.svg";
-import { ReactComponent as NavMoreSVG } from "/src/images/navmore.svg";
-import { ReactComponent as MssgSVG } from "/src/images/mssg.svg";
-import { ReactComponent as ProfileSVG } from "/src/images/profile.svg";
-import { ReactComponent as WriteSVG } from "/src/images/write.svg";
+import { ReactComponent as HomeSVG } from "../images/home.svg";
+import { ReactComponent as SearchSVG } from "../images/search.svg";
+import { ReactComponent as NotifSVG } from "../images/notif.svg";
+import { ReactComponent as NavMoreSVG } from "../images/navmore.svg";
+import { ReactComponent as MssgSVG } from "../images/mssg.svg";
+import { ReactComponent as ProfileSVG } from "../images/profile.svg";
+import { ReactComponent as WriteSVG } from "../images/write.svg";
 
 function Navbar() {
   var avatarURL = "https://i.pravatar.cc/" + Math.round(Math.random() * 500);

@@ -1,63 +1,120 @@
-import "/src/styles/cards.css";
-import Card from "./Card.js";
+import { useEffect, useState } from "react"
+import Card from "./Card";
 
-function Cards() {
+import moment from "moment-timezone";
+import { db } from "../config";
+import { collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import "../styles/cards.css";
+
+const Cards = () => {
+  const [dataTweet, setDataTweet] = useState([])
+
+  useEffect(() => {
+    const getDataTweet = () => {
+      const q = query(collection(db, 'tweet'), orderBy('createdAt', 'desc'))
+      onSnapshot(q, (querySnapshot) => {
+        setDataTweet(querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          data: doc.data()
+        })))
+      })
+    }
+
+    getDataTweet()
+
+  }, [])
+
+  const like = async (id, likeBefore) => {
+    try {
+      const tweetDoc = doc(db, 'tweet', id)
+      if(likeBefore > 0) {
+        await updateDoc(tweetDoc, {
+          like: parseInt(likeBefore)-1,
+        })
+
+      } else {
+        await updateDoc(tweetDoc, {
+          like: parseInt(likeBefore)+1,
+        })
+
+      }
+    } catch (error) {
+      alert("failed like")
+    }
+  }
+
+  const comment = async (id, commentBefore) => {
+    try {
+      const tweetDoc = doc(db, 'tweet', id)
+      if(commentBefore > 0) {
+        await updateDoc(tweetDoc, {
+          comment: parseInt(commentBefore)-1,
+        })
+      } else {
+        await updateDoc(tweetDoc, {
+          comment: parseInt(commentBefore)+1,
+        })
+      }
+    } catch (error) {
+      alert("failed comment")
+    }
+  }
+
+  const deleteAction = async (id) => {
+    try {
+      const tweetDoc = doc(db, 'tweet', id)
+      await deleteDoc(tweetDoc)
+    } catch (error) {
+      alert("failed delete")
+    }
+  }
+
+  const retweet = async (id, retwetBefore) => {
+    try {
+      const tweetDoc = doc(db, 'tweet', id)
+      if(retwetBefore > 0) {
+        await updateDoc(tweetDoc, {
+          retweet: parseInt(retwetBefore)-1,
+        })
+
+      } else {
+        await updateDoc(tweetDoc, {
+          retweet: parseInt(retwetBefore)+1,
+        })
+
+      }
+    } catch (error) {
+      alert("failed retweet")
+    }
+  }
+
   return (
     <div className="cards">
-      <Card
-        image="https://source.unsplash.com/random?whiterose"
-        user="Betty"
-        info="flowers_twt"
-        tags="white rose"
-        hash="#whiterose"
-        time="5h"
-        comment="6"
-        retweet="102"
-        like="300"
-      />
-      <Card
-        image="https://source.unsplash.com/random?pikachu"
-        user="pika pika"
-        info="pikachu"
-        tags="cute"
-        hash="#pikachu"
-        time="19h"
-        comment="59"
-        retweet="1,400"
-        like="5k"
-      />
-      <Card
-        image="https://source.unsplash.com/random?bali"
-        user="Beautiful Bali"
-        info="bali_tourism"
-        tags="Photo taken by Aaron S"
-        hash="#visitbali"
-        time="20h"
-        comment="1"
-        retweet="20"
-        like="79"
-      />
-      <Card
-        image="https://source.unsplash.com/random?forest"
-        user="Zac"
-        info="ZacharyL"
-        tags="trip to the woods"
-        time="5h"
-        comment="23"
-        retweet="300"
-        like="1,500"
-      />
-      <Card
-        image="https://source.unsplash.com/random?videogame"
-        user="Ekko"
-        info="EkkoVD"
-        hash="#gameon"
-        tags="Gaming night"
-        time="23h"
-        comment="10"
-        retweet="39"
-        like="100"
-      />
+      {
+        dataTweet.length != 0 ?
+        dataTweet.map((tweet, i) => {
+          const diffTime = moment(moment(new Date(tweet.data.createdAt.seconds*1000)).format("YYYY/MM/DD HH:mm:ss"), "YYYY/MM/DD HH:mm:ss").fromNow();
+          return (
+            <Card
+              id={tweet.id}
+              key={i}
+              user={tweet.data.name}
+              info={tweet.data.userName}
+              tags={tweet.data.tweet}
+              time={diffTime}
+              comment={tweet.data.comment}
+              retweet={tweet.data.retweet}
+              like={tweet.data.like}
+              likeAction={like}
+              commentAction={comment}
+              deleteAction={deleteAction}
+              retweetAction={retweet}
+            />
+          )
+        })
+        :
+          <p style={{ padding:"30px" }}>No tweet here, create your first tweet</p>
+      }
     </div>
   );
 }

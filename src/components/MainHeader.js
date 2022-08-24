@@ -1,6 +1,6 @@
-import "/src/styles/mainheader.css";
+import "../styles/mainheader.css";
 
-import { ReactComponent as SparkleSVG } from "/src/images/sparkle.svg";
+import { ReactComponent as SparkleSVG } from "../images/sparkle.svg";
 
 function CardHeader() {
   var avatarURL = "https://i.pravatar.cc/" + Math.round(Math.random() * 500);

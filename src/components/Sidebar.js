@@ -1,4 +1,4 @@
-import "/src/styles/sidebar.css";
+import "../styles/sidebar.css";
 import Search from "./Search";
 import Trend from "./Trend";
 
