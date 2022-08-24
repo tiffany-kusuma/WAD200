@@ -1,0 +1,52 @@
+.trendheader {
+  position: relative;
+  padding: 16px 16px;
+}
+
+.trend-wrapper {
+  padding-left: 16px;
+  padding-top: 16px;
+}
+
+.trend {
+  background-color: rgb(247, 249, 249);
+  border-radius: 16px;
+  width: 350px;
+}
+
+.trendheader h1 {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.trendcontent h1 {
+  font-size: 15px;
+  padding-bottom: 8px;
+  font-weight: 100;
+  color: grey;
+}
+
+.trendcontent h2 {
+  margin: 0;
+  font-size: 20px;
+  padding-bottom: 8px;
+}
+
+.trendcontent p {
+  font-family: var(--font);
+  margin: 0;
+  font-size: 15px;
+  color: grey;
+}
+
+.trendcontent-wrapper {
+  padding-top: 0px;
+}
+.trendcontent {
+  padding: 16px 16px;
+  border-radius: 16px;
+}
+.trendcontent:hover {
+  transition: 0.4s;
+  background-color: rgb(239, 241, 241);
+}

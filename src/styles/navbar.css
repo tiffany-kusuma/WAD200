@@ -1,0 +1,73 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: var(--sidebar-width);
+  height: 100%;
+  border-bottom: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+  background-color: white;
+  padding-right: 12px;
+  border-right: 1px solid rgb(207, 217, 222);
+}
+
+.logo {
+  width: 80%;
+  padding: var(--icon-padding);
+}
+
+.logo:hover {
+  cursor: pointer;
+  filter: saturate(80%);
+}
+
+.logo:active {
+  filter: saturate(50%);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu .icon {
+  width: 80%;
+  padding: var(--icon-padding);
+}
+
+.menu .icon:hover {
+  cursor: pointer;
+  filter: invert(40%) sepia(62%) saturate(1516%) hue-rotate(177deg)
+    brightness(106%) contrast(109%);
+}
+
+.menu .icon:active {
+  filter: invert(96%) sepia(72%) saturate(932%) hue-rotate(171deg)
+    brightness(96%) contrast(93%);
+}
+
+.userimg {
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  transition: 0.5s;
+  margin: 0px;
+  align-items: center;
+}
+
+.userprofile {
+  padding: var(--icon-padding);
+  align-items: center;
+}
+
+/* changing svg colours with css using the filter - convert a hex color to filter using this codepen
+https://codepen.io/sosuke/pen/Pjoqqp
+*/

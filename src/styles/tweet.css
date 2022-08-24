@@ -1,0 +1,92 @@
+.cardheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  margin: 0px;
+  width: 100%;
+  padding-left: 16px;
+}
+
+.userimg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: var(--border-primary);
+  display: block;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.cardimage {
+  margin: 0;
+}
+
+.tweet-box {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.tweet-function {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  margin-left: 0;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  width: 100%;
+  border-style: none;
+}
+
+input.input {
+  font-family: "Amiro", sans-serif;
+  color: grey;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 20px;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.tweet-svg {
+  margin-left: 0;
+  cursor: pointer;
+  fill: rgb(29, 155, 240);
+  display: flex;
+}
+.tweet-svg .icon {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.tweet-svg .icon:hover {
+  background-color: rgba(29, 155, 240, 0.2);
+  border-radius: 50%;
+  transition-duration: 0.2s;
+}
+
+.tweet-button {
+  border-radius: var(--border-radius);
+  border-style: none;
+  background-color: rgb(29, 155, 240);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  cursor: pointer;
+}
+
+.tweet-button:hover {
+  transition: 0.2s;
+  background-color: rgba(29, 155, 240, 0.4);
+}

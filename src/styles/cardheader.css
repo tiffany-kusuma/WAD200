@@ -1,0 +1,31 @@
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.75em;
+  margin: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: black;
+}
+
+.card-wrapper {
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.userimg {
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  transition: 0.5s;
+  margin: 0px;
+  align-items: center;
+}
+
+.avatarimg:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.cardimage {
+  margin: 0;
+}

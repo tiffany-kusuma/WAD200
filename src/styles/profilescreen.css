@@ -1,0 +1,16 @@
+
+.profilescreen {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 100px;
+   background-color: var(--background-secondary);
+}
+
+.profilescreen h2{
+   padding:30px;
+}
+
+.profilescreen p{
+   padding:30px;
+}
