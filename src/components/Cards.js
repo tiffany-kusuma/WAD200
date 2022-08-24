@@ -75,7 +75,6 @@ const Cards = () => {
 
   const retweet = async (id, retwetBefore, retwweted) => {
     try {
-      console.log("retwweted => ", retwweted);
       const tweetDoc = doc(db, 'tweet', id)
       if(retwweted === true) {
         await updateDoc(tweetDoc, {
