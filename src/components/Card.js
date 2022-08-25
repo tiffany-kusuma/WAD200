@@ -8,7 +8,7 @@ import { ReactComponent as ShareSVG } from "../images/share.svg";
 import HeartRed from "../images/likefill.svg";
 import { useState } from "react";
 
-function Card({ id, image=null, user, info, tags, time, comment, like, retweet, hash, likeAction, commentAction, deleteAction, retweetAction, deleteBtn=false, commented, liked, retweeted }) {
+function Card({ id, image=null, user, info, tags, time, comment, like, retweet, hash, likeAction, commentAction, deleteAction, retweetAction, deleteBtn=false, commented, liked, retweeted, showModals }) {
   const [showDelete, setShowDelete] = useState(false)
 
   return (
@@ -47,7 +47,7 @@ function Card({ id, image=null, user, info, tags, time, comment, like, retweet, 
           
           {
             image !== null &&
-            <img className="cardimage" src={image} alt="card" />
+            <img className="cardimage" src={image} alt="card" onClick={() => showModals(image)}/>
           }
 
           <div className="cardbutton">

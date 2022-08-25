@@ -5,9 +5,12 @@ import moment from "moment-timezone";
 import { db } from "../config";
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import "../styles/cards.css";
+import Modal from '../components/Modals'
 
 const Cards = () => {
   const [dataTweet, setDataTweet] = useState([])
+  const [modals, setModals] = useState(false)
+  const [contentModals, setContentModals] = useState("")
 
   useEffect(() => {
     const getDataTweet = () => {
@@ -23,6 +26,15 @@ const Cards = () => {
     getDataTweet()
 
   }, [])
+
+  const closeModal = () => {
+    setModals(false)
+  }
+
+  const showModals = (image) => {
+    setModals(true)
+    setContentModals(image)
+  }
 
   const like = async (id, likeBefore, liked) => {
     try {
@@ -120,12 +132,17 @@ const Cards = () => {
               commented={tweet.data.commented}
               liked={tweet.data.liked}
               retweeted={tweet.data.retweeted}
+              showModals={showModals}
             />
           )
         })
         :
           <p style={{ padding:"30px" }}>No tweet here, create your first tweet</p>
       }
+
+      <Modal show={modals} close={closeModal}>
+        <img src={contentModals} style={{ width:"100%", height: "100%", borderRadius: 10 }}/>
+      </Modal>
     </div>
   );
 }
