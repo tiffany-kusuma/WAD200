@@ -7,48 +7,58 @@ import { ReactComponent as HeartSVG } from "../images/heart.svg";
 import { ReactComponent as ShareSVG } from "../images/share.svg";
 import HeartRed from "../images/likefill.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Card({ id, image=null, user, info, tags, time, comment, like, retweet, hash, likeAction, commentAction, deleteAction, retweetAction, deleteBtn=false, commented, liked, retweeted, showModals }) {
+function Card({ id, image=null, user, info, tags, time, comment, like, retweet, hash, likeAction, commentAction, deleteAction, retweetAction, deleteBtn=false, commented, liked, retweeted, clicked=true }) {
   const [showDelete, setShowDelete] = useState(false)
+  const navigate = useNavigate()
+
+  const redirectToView = () => {
+    if(clicked) {
+      navigate(`tweet/${id}`)
+    }
+  }
 
   return (
     <div className="card">
       <div className="headerwrapper">
         <CardHeader />
         <div className="data">
-          <div className="detailswrapper">
-            <div className="details">
-              <h1>{user}</h1>
-              <h2>@{info}</h2>
-              <span className="span">·</span>
-              <h2>{time}</h2>
+          <div onClick={redirectToView}>
+            <div className="detailswrapper">
+              <div className="details">
+                <h1>{user}</h1>
+                <h2>@{info}</h2>
+                <span className="span">·</span>
+                <h2>{time}</h2>
+              </div>
+              
+              {
+                deleteBtn === true &&
+                <div className="more-btn">
+                  <MoreSVG onClick={() => setShowDelete(showDelete ? false : true)}/>
+                  {
+                    showDelete === true &&
+                    <div className="btn-delte-container">
+                      <button className="btn-delete" onClick={() => deleteAction(id)}>
+                        Delete Tweet
+                      </button>
+                    </div>
+                  }
+                </div>
+              }
+
+            </div>
+            <div class="caption">
+              <p>{tags}</p>
+              <li class="hashtag">{hash}</li>
             </div>
             
             {
-              deleteBtn === true &&
-              <div className="more-btn">
-                <MoreSVG onClick={() => setShowDelete(showDelete ? false : true)}/>
-                {
-                  showDelete === true &&
-                  <div className="btn-delte-container">
-                    <button className="btn-delete" onClick={() => deleteAction(id)}>
-                      Delete Tweet
-                    </button>
-                  </div>
-                }
-              </div>
+              image !== null &&
+              <img className="cardimage" src={image} alt="card"/>
             }
-
           </div>
-          <div class="caption">
-            <p>{tags}</p>
-            <li class="hashtag">{hash}</li>
-          </div>
-          
-          {
-            image !== null &&
-            <img className="cardimage" src={image} alt="card" onClick={() => showModals(image)}/>
-          }
 
           <div className="cardbutton">
             <div className="buttons" onClick={() => commentAction(id, comment, commented)}>
