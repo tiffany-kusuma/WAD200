@@ -24,41 +24,39 @@ function Card({ id, image=null, user, info, tags, time, comment, like, retweet, 
       <div className="headerwrapper">
         <CardHeader />
         <div className="data">
-          <div onClick={redirectToView}>
-            <div className="detailswrapper">
-              <div className="details">
-                <h1>{user}</h1>
-                <h2>@{info}</h2>
-                <span className="span">·</span>
-                <h2>{time}</h2>
-              </div>
-              
-              {
-                deleteBtn === true &&
-                <div className="more-btn">
-                  <MoreSVG onClick={() => setShowDelete(showDelete ? false : true)}/>
-                  {
-                    showDelete === true &&
-                    <div className="btn-delte-container">
-                      <button className="btn-delete" onClick={() => deleteAction(id)}>
-                        Delete Tweet
-                      </button>
-                    </div>
-                  }
-                </div>
-              }
-
-            </div>
-            <div class="caption">
-              <p>{tags}</p>
-              <li class="hashtag">{hash}</li>
+          <div className="detailswrapper">
+            <div className="details" onClick={redirectToView}>
+              <h1>{user}</h1>
+              <h2>@{info}</h2>
+              <span className="span">·</span>
+              <h2>{time}</h2>
             </div>
             
             {
-              image !== null &&
-              <img className="cardimage" src={image} alt="card"/>
+              deleteBtn === true &&
+              <div className="more-btn">
+                <MoreSVG onClick={() => setShowDelete(showDelete ? false : true)}/>
+                {
+                  showDelete === true &&
+                  <div className="btn-delte-container">
+                    <button className="btn-delete" onClick={() => deleteAction(id)}>
+                      Delete Tweet
+                    </button>
+                  </div>
+                }
+              </div>
             }
+
           </div>
+          <div class="caption" onClick={redirectToView}>
+            <p>{tags}</p>
+            <li class="hashtag">{hash}</li>
+          </div>
+          
+          {
+            image !== null &&
+            <img className="cardimage" src={image} alt="card" onClick={redirectToView}/>
+          }
 
           <div className="cardbutton">
             <div className="buttons" onClick={() => commentAction(id, comment, commented)}>

@@ -18,7 +18,11 @@ const ViewTweet = () => {
         const tweet = doc(db, 'tweet', id)
         try{
             const dataDoc = await getDoc(tweet)
-            setDataDetail(dataDoc.data())
+            if(dataDoc.data() !== undefined) {
+                setDataDetail(dataDoc.data())
+            } else {
+                setDataDetail("")
+            }
         } catch (err) {
             alert(err)
         }    
@@ -71,6 +75,7 @@ const ViewTweet = () => {
     }
 
     const deleteAction = async (id) => {
+        console.log("del");
         try {
             const tweetDoc = doc(db, 'tweet', id)
             await deleteDoc(tweetDoc)
